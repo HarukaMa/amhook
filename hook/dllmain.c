@@ -1,6 +1,13 @@
 // dllmain.cpp : Defines the entry point for the DLL application.
 #include "pch.h"
-#include <cstdio>
+#include <stdio.h>
+
+HANDLE (*OriginalCreateFileW)(LPCWSTR, DWORD, DWORD, LPSECURITY_ATTRIBUTES, DWORD, DWORD, HANDLE) = NULL;
+
+HANDLE __stdcall ProxyCreateFileW(LPCWSTR lpFileName, DWORD dwDesiredAccess, DWORD dwShareMode, LPSECURITY_ATTRIBUTES lpSecurityAttributes, DWORD dwCreationDisposition, DWORD dwFlagsAndAttributes, HANDLE hTemplateFile) {
+    wprintf(L"CreateFileW %ls\n", lpFileName);
+	return OriginalCreateFileW(lpFileName, dwDesiredAccess, dwShareMode, lpSecurityAttributes, dwCreationDisposition, dwFlagsAndAttributes, hTemplateFile);
+}
 
 void __stdcall local_debug_log_w(LPCWSTR str) {
     wprintf(L"%ls", str);
@@ -10,8 +17,8 @@ void __stdcall log_version(char* version) {
     printf("%s", version);
 }
 
-void patch_winapi(const char *library, const char *proc, void (*func)) {
-    FARPROC addr = GetProcAddress(LoadLibraryA(library), proc);
+void patch_winapi(const char *module, const char *proc, void (*func)) {
+    FARPROC addr = GetProcAddress(LoadLibraryA(module), proc);
     DWORD prot;
     VirtualProtect(addr, 14, PAGE_EXECUTE_READWRITE, &prot);
     *((char*)addr) = '\x68';
@@ -56,6 +63,36 @@ void enable_log(HMODULE module, int offset) {
     printf("+%X: %d\n", offset, *(int*)((char*)module + offset));
 }
 
+void hook_api(HMODULE self, const char *module, const char *proc, void (*func)) {
+    int import_dir_offset = 0x74F7AC;
+    int import_desc_size = sizeof(struct _IMAGE_IMPORT_DESCRIPTOR);
+    int import_count = 0x1CC / import_desc_size;
+	for (int i = 0; i < import_count; i ++) {
+        struct _IMAGE_IMPORT_DESCRIPTOR* descriptor = (struct _IMAGE_IMPORT_DESCRIPTOR*)((char*)self + import_dir_offset + i * import_desc_size);
+		if (!strcmp((char *)self + descriptor->Name, module)) {
+            void* oft = (void *)((char *)self + descriptor->OriginalFirstThunk);
+            int order = 0;
+			while (*((long long *)oft + order) != 0) {
+				if (*((long long*)oft + order) >> 63) {
+                    continue;
+				}
+				if (!strcmp((char*)self + *((long long*)oft + order) + 2, proc)) {
+                    void** orig = (void **)((char *)self + descriptor->FirstThunk + order * 8);
+                    OriginalCreateFileW = *orig;
+                    DWORD prot;
+                    VirtualProtect(orig, 8, PAGE_EXECUTE_READWRITE, &prot);
+                    *orig = func;
+                    VirtualProtect(orig, 8, prot, &prot);
+                    return;
+				}
+                order += 1;
+			}
+            printf("Failed to find %s in %s!\n", proc, module);
+		}
+	}
+    printf("Failed to find import %s!\n", module);
+}
+
 void run() {
     HMODULE module = GetModuleHandleA("amdaemon.exe");
     printf("Module: %p\n", module);
@@ -72,6 +109,8 @@ void run() {
     patch_log(module, 0x274080, &log_version);
     printf("Patching Windows API...\n");
     patch_winapi("kernel32.dll", "OutputDebugStringW", &local_debug_log_w);
+    printf("Hooking Windows API...\n");
+    hook_api(module, "KERNEL32.dll", "CreateFileW", &ProxyCreateFileW);
 }
 
 BOOL APIENTRY DllMain( HMODULE hModule,
