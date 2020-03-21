@@ -1,12 +1,35 @@
 // dllmain.cpp : Defines the entry point for the DLL application.
+
 #include "pch.h"
 #include <stdio.h>
 
-HANDLE (*OriginalCreateFileW)(LPCWSTR, DWORD, DWORD, LPSECURITY_ATTRIBUTES, DWORD, DWORD, HANDLE) = NULL;
+HANDLE(*OriginalCreateFileW)(LPCWSTR, DWORD, DWORD, LPSECURITY_ATTRIBUTES, DWORD, DWORD, HANDLE) = NULL;
+BOOL(*OriginalDeviceIoControl)(HANDLE, DWORD, LPVOID, DWORD, LPVOID, DWORD, LPDWORD, LPOVERLAPPED) = NULL;
 
-HANDLE __stdcall ProxyCreateFileW(LPCWSTR lpFileName, DWORD dwDesiredAccess, DWORD dwShareMode, LPSECURITY_ATTRIBUTES lpSecurityAttributes, DWORD dwCreationDisposition, DWORD dwFlagsAndAttributes, HANDLE hTemplateFile) {
-    wprintf(L"CreateFileW %ls\n", lpFileName);
+HANDLE fdd_driver_handle = (void *)0x80000001;
+
+HANDLE __stdcall ProxyCreateFileW(LPCWSTR lpFileName, DWORD dwDesiredAccess, DWORD dwShareMode, LPSECURITY_ATTRIBUTES lpSecurityAttributes, DWORD dwCreationDisposition, DWORD dwFlagsAndAttributes, HANDLE hTemplateFile) {    
+	if (!wcscmp(lpFileName, L"\\??\\FddDriver")) {
+        wprintf(L"Returning fake handle for access of %ls\n", lpFileName);
+        return fdd_driver_handle;
+	}
 	return OriginalCreateFileW(lpFileName, dwDesiredAccess, dwShareMode, lpSecurityAttributes, dwCreationDisposition, dwFlagsAndAttributes, hTemplateFile);
+}
+
+BOOL __stdcall ProxyDeviceIoControl(HANDLE hDevice, DWORD dwIoControlCode, LPVOID lpInBuffer, DWORD nInBufferSize, LPVOID lpOutBuffer, DWORD nOutBufferSize, LPDWORD lpBytesReturned, LPOVERLAPPED lpOverlapped) {
+	if (hDevice == fdd_driver_handle) {
+        printf("Received IO Control for FddDriver, code 0x%lx, input size %ld, output size %ld\n", dwIoControlCode, nInBufferSize, nOutBufferSize);
+        SetEvent(lpOverlapped->hEvent);
+        SetLastError(ERROR_IO_PENDING);
+        return 0;
+	}
+    return OriginalDeviceIoControl(hDevice, dwIoControlCode, lpInBuffer, nInBufferSize, lpOutBuffer, nOutBufferSize, lpBytesReturned, lpOverlapped);
+}
+
+BOOL __stdcall main_serial(LPSTR lpBuffer, LPDWORD nSize) {
+    *nSize = 15;
+    strcpy(lpBuffer, "ACAE01234567890");
+    return 1;
 }
 
 void __stdcall local_debug_log_w(LPCWSTR str) {
@@ -53,8 +76,7 @@ void patch_log(HMODULE module, int offset, void(*func)) {
         printf("%02hhX ", *((char*)module + offset + i));
 	}
     printf("\n");
-    DWORD unused;
-    VirtualProtect(module + offset, 14, prot, &unused);
+    VirtualProtect(module + offset, 14, prot, &prot);
 }
 
 void enable_log(HMODULE module, int offset) {
@@ -63,7 +85,7 @@ void enable_log(HMODULE module, int offset) {
     printf("+%X: %d\n", offset, *(int*)((char*)module + offset));
 }
 
-void hook_api(HMODULE self, const char *module, const char *proc, void (*func)) {
+void hook_import(HMODULE self, const char *module, const char *proc, void (*func), void *(*original)) {
     int import_dir_offset = 0x74F7AC;
     int import_desc_size = sizeof(struct _IMAGE_IMPORT_DESCRIPTOR);
     int import_count = 0x1CC / import_desc_size;
@@ -78,11 +100,12 @@ void hook_api(HMODULE self, const char *module, const char *proc, void (*func)) 
 				}
 				if (!strcmp((char*)self + *((long long*)oft + order) + 2, proc)) {
                     void** orig = (void **)((char *)self + descriptor->FirstThunk + order * 8);
-                    OriginalCreateFileW = *orig;
+                    *original = *orig;
                     DWORD prot;
                     VirtualProtect(orig, 8, PAGE_EXECUTE_READWRITE, &prot);
                     *orig = func;
                     VirtualProtect(orig, 8, prot, &prot);
+                    printf("Hooked %s\n", proc);
                     return;
 				}
                 order += 1;
@@ -103,14 +126,17 @@ void run() {
     	}
         enable_log(module, i);
     }
+    enable_log(module, 0x828080);
     enable_log(module, 0x8283F0);
     enable_log(module, 0x828430);
     printf("Patching null logs...\n");
     patch_log(module, 0x274080, &log_version);
     printf("Patching Windows API...\n");
     patch_winapi("kernel32.dll", "OutputDebugStringW", &local_debug_log_w);
+    patch_winapi("kernel32.dll", "GetComputerNameA", &main_serial);
     printf("Hooking Windows API...\n");
-    hook_api(module, "KERNEL32.dll", "CreateFileW", &ProxyCreateFileW);
+    hook_import(module, "KERNEL32.dll", "CreateFileW", &ProxyCreateFileW, &OriginalCreateFileW);
+    hook_import(module, "KERNEL32.dll", "DeviceIoControl", &ProxyDeviceIoControl, &OriginalDeviceIoControl);
 }
 
 BOOL APIENTRY DllMain( HMODULE hModule,

@@ -9,7 +9,7 @@ int main() {
 	PROCESS_INFORMATION *process_info = (PROCESS_INFORMATION *)malloc(sizeof(PROCESS_INFORMATION));
 	BOOL create = CreateProcessA(
 		"amdaemon.exe",
-		NULL,
+		"-f -c config_common.json config_client.json config_server.json",
 		NULL,
 		NULL,
 		0,
