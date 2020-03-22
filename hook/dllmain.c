@@ -7,11 +7,15 @@ HANDLE(*OriginalCreateFileW)(LPCWSTR, DWORD, DWORD, LPSECURITY_ATTRIBUTES, DWORD
 BOOL(*OriginalDeviceIoControl)(HANDLE, DWORD, LPVOID, DWORD, LPVOID, DWORD, LPDWORD, LPOVERLAPPED) = NULL;
 
 HANDLE fdd_driver_handle = (void *)0x80000001;
+HANDLE hw_monitor_handle = (void *)0x80000002;
 
 HANDLE __stdcall ProxyCreateFileW(LPCWSTR lpFileName, DWORD dwDesiredAccess, DWORD dwShareMode, LPSECURITY_ATTRIBUTES lpSecurityAttributes, DWORD dwCreationDisposition, DWORD dwFlagsAndAttributes, HANDLE hTemplateFile) {    
 	if (!wcscmp(lpFileName, L"\\??\\FddDriver")) {
         wprintf(L"Returning fake handle for access of %ls\n", lpFileName);
         return fdd_driver_handle;
+	} else if (!wcscmp(lpFileName, L"\\\\.\\sghwmonitor")) {
+        wprintf(L"Returning fake handle for access of %ls\n", lpFileName);
+        return hw_monitor_handle;
 	}
 	return OriginalCreateFileW(lpFileName, dwDesiredAccess, dwShareMode, lpSecurityAttributes, dwCreationDisposition, dwFlagsAndAttributes, hTemplateFile);
 }
@@ -20,8 +24,16 @@ BOOL __stdcall ProxyDeviceIoControl(HANDLE hDevice, DWORD dwIoControlCode, LPVOI
 	if (hDevice == fdd_driver_handle) {
         printf("Received IO Control for FddDriver, code 0x%lx, input size %ld, output size %ld\n", dwIoControlCode, nInBufferSize, nOutBufferSize);
         SetEvent(lpOverlapped->hEvent);
+        if (lpBytesReturned) {
+            *lpBytesReturned = 0;
+        }
         SetLastError(ERROR_IO_PENDING);
         return 0;
+	} else if (hDevice == hw_monitor_handle) {
+		printf("Received IO Control for sghwmonitor, code 0x%lx, input size %ld, output size %ld\n", dwIoControlCode, nInBufferSize, nOutBufferSize);
+        *(int*)lpOutBuffer = 42;
+        *lpBytesReturned = 4;
+        return 1;
 	}
     return OriginalDeviceIoControl(hDevice, dwIoControlCode, lpInBuffer, nInBufferSize, lpOutBuffer, nOutBufferSize, lpBytesReturned, lpOverlapped);
 }
@@ -126,6 +138,8 @@ void run() {
     	}
         enable_log(module, i);
     }
+    enable_log(module, 0x827E08);
+    enable_log(module, 0x827E0C);
     enable_log(module, 0x828080);
     enable_log(module, 0x8283F0);
     enable_log(module, 0x828430);
