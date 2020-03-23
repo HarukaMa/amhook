@@ -93,6 +93,75 @@
     <ClCompile Include="log.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CreditBookkeeping.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CreditConfig.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CreditSpecialDevice.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CreditUnit.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Credit.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EMoneyBrand.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EMoneyOperation.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sequence.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EMoneyReport.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SequenceBookkeeping.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Version.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EMoney.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="System.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SerialId.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ErrorInfo.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ErrorLog.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ErrorTimesItem.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Error.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Exception.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FeliCaId.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="InputUnit.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Input.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LanInstall.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="log.h">

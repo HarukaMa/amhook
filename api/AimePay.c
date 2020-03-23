@@ -2,6 +2,8 @@
 #include <stdint.h>
 #include <stdio.h>
 
+#include "log.h"
+
 int32_t AimePayCheckInPinCodeLength_get() {
 	log("\n");
 	return 4;
@@ -50,4 +52,19 @@ bool AimePay_isActivated() {
 bool AimePay_isAvailable() {
 	log("\n");
 	return 0;
+}
+
+uint32_t MaxAimePayAmountCount_get() {
+	log("\n");
+	return 99999;
+}
+
+int32_t MaxAimePayErrorCodeLength_get() {
+	log("\n");
+	return 18;
+}
+
+int32_t MaxAimePayItemIdLength_get() {
+	log("\n");
+	return 13;
 }

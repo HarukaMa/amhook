@@ -1,6 +1,5 @@
 #include <stdbool.h>
 #include <stdint.h>
-#include <stdio.h>
 
 #include "log.h"
 
@@ -17,4 +16,19 @@ int32_t Can_getPortCount() {
 bool Can_isAvailable() {
 	log("\n");
 	return false;
+}
+
+uint8_t DefaultCanPacketPriority_get() {
+	log("\n");
+	return 15;
+}
+
+int32_t MaxCanPacketDataSize_get() {
+	log("\n");
+	return 8;
+}
+
+uint8_t MaxCanPacketPriority_get() {
+	log("\n");
+	return 15;
 }

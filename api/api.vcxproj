@@ -180,9 +180,32 @@
     <ClCompile Include="CanTarget.c" />
     <ClCompile Include="CanTargetProperty.c" />
     <ClCompile Include="Core.c" />
+    <ClCompile Include="Credit.c" />
+    <ClCompile Include="CreditBookkeeping.c" />
+    <ClCompile Include="CreditConfig.c" />
+    <ClCompile Include="CreditSpecialDevice.c" />
+    <ClCompile Include="CreditUnit.c" />
     <ClCompile Include="dllmain.c" />
     <ClCompile Include="CanAck.c" />
+    <ClCompile Include="EMoney.c" />
+    <ClCompile Include="EMoneyBrand.c" />
+    <ClCompile Include="EMoneyOperation.c" />
+    <ClCompile Include="EMoneyReport.c" />
+    <ClCompile Include="Error.c" />
+    <ClCompile Include="ErrorInfo.c" />
+    <ClCompile Include="ErrorLog.c" />
+    <ClCompile Include="ErrorTimesItem.c" />
+    <ClCompile Include="Exception.c" />
+    <ClCompile Include="FeliCaId.c" />
+    <ClCompile Include="Input.c" />
+    <ClCompile Include="InputUnit.c" />
+    <ClCompile Include="LanInstall.c" />
     <ClCompile Include="log.c" />
+    <ClCompile Include="Sequence.c" />
+    <ClCompile Include="SequenceBookkeeping.c" />
+    <ClCompile Include="SerialId.c" />
+    <ClCompile Include="System.c" />
+    <ClCompile Include="Version.c" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Source.def" />

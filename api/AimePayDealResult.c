@@ -2,6 +2,8 @@
 #include <stdint.h>
 #include <stdio.h>
 
+#include "log.h"
+
 #define _out_
 
 void AimePayDealResult_getAccessCode(void *result, _out_ int8_t *dest, int destSize) {
@@ -31,4 +33,9 @@ uint64_t AimePayDealResult_getTime(void* result) {
 bool AimePayDealResult_valid(void* result) {
 	log("%p\n", result);
 	return 0;
+}
+
+int32_t MaxAimePayDealResultCount_get() {
+	log("\n");
+	return 5;
 }

@@ -14,6 +14,9 @@ void log_(const char* format, ...) {
 	sprintf(new_format, "%%s %s", format);
 	char buffer[256];
 	vsprintf(buffer, new_format, args);
-	fprintf(output, "[%04d-%02d-%02d %02d:%02d:%02d.%03d] %s", st.wYear, st.wMonth, st.wDay, st.wHour, st.wMinute, st.wSecond, st.wMilliseconds, buffer);
+	char result[512];
+	sprintf(result, "[%04d-%02d-%02d %02d:%02d:%02d.%03d] %s", st.wYear, st.wMonth, st.wDay, st.wHour, st.wMinute, st.wSecond, st.wMilliseconds, buffer);
+	OutputDebugStringA(result);
+	fprintf(output, "%s", result);
 	fflush(output);
 }
