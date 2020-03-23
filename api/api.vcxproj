@@ -170,6 +170,12 @@
     <ClCompile Include="AimePayOperation.c" />
     <ClCompile Include="AimeResult.c" />
     <ClCompile Include="AimeUnit.c" />
+    <ClCompile Include="allnet_Accounting.c" />
+    <ClCompile Include="allnet_AccountingPlayCountItem.c" />
+    <ClCompile Include="allnet_AccountingUnit.c" />
+    <ClCompile Include="allnet_Auth.c" />
+    <ClCompile Include="allnet_WiFi.c" />
+    <ClCompile Include="allnet_WiFiUnit.c" />
     <ClCompile Include="Analog.c" />
     <ClCompile Include="Apm.c" />
     <ClCompile Include="AppImage.c" />

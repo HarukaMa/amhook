@@ -3,8 +3,8 @@
 
 #include "log.h"
 
-void* Can_getPort(int portIndex) {
-	log("%p\n", portIndex);
+void* Can_getPort(int32_t portIndex) {
+	log("%d\n", portIndex);
 	return 0;
 }
 

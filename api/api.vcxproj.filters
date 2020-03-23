@@ -240,6 +240,24 @@
     <ClCompile Include="UsbDevice.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="allnet_AccountingPlayCountItem.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="allnet_AccountingUnit.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="allnet_Accounting.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="allnet_Auth.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="allnet_WiFiUnit.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="allnet_WiFi.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="log.h">
