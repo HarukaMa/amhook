@@ -4,7 +4,7 @@
 #include "log.h"
 
 void* Can_getPort(int portIndex) {
-	log("%d\n", portIndex);
+	log("%p\n", portIndex);
 	return 0;
 }
 

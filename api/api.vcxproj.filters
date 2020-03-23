@@ -162,6 +162,84 @@
     <ClCompile Include="LanInstall.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="JvsAnalogInput.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="JvsGeneralOutput.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="JvsNode.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="JvsRotaryInput.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="JvsSwitchInput.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Jvs.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SwitchInput.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SwitchOutput.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TestResult.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TimeHistogramItem.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="NetDeliveryAppImageInfo.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="NetDeliveryOptionImageInfo.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="NetDeliveryProgress.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="NetDeliveryStatus.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="NetDeliveryTimeInfo.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="NetDelivery.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="NetworkProperty.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="NetworkTestInfo.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="NetworkTestItem.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Network.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="OptionImageInfo.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="OutputUnit.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Output.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RequestState.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Resolution.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UsbDevice.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="log.h">
