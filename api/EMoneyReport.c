@@ -57,7 +57,7 @@ int32_t EMoneyResult_getBalanceBefore(void* report) {
 
 void* EMoneyResult_getBrand(void* report) {
 	log("%p\n", report);
-	return 0;
+	return 0x27;
 }
 
 wchar_t* EMoneyResult_getCardNumber(void* report) {

@@ -5,7 +5,7 @@
 
 void* Can_getPort(int32_t portIndex) {
 	log("%d\n", portIndex);
-	return 0;
+	return 0x18;
 }
 
 int32_t Can_getPortCount() {

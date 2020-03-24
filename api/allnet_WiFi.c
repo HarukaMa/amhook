@@ -9,7 +9,7 @@ void allnet_WiFi_clearUnitCache() {
 
 void* allnet_WiFi_getUnit(int32_t unitIndex) {
 	log("%d\n", unitIndex);
-	return 0;
+	return 0x12;
 }
 
 int32_t allnet_WiFi_getUnitCount() {

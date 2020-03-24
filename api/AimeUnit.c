@@ -49,7 +49,7 @@ enum AimeConfirm AimeUnit_getConfirm(void* unit) {
 
 void* AimeUnit_getErrorInfo(void* unit) {
 	log("%p\n", unit);
-	return 0;
+	return 0xE;
 }
 
 enum AimeLedStatus AimeUnit_getLedStatus(void* unit) {
@@ -59,7 +59,7 @@ enum AimeLedStatus AimeUnit_getLedStatus(void* unit) {
 
 void* AimeUnit_getResult(void* unit) {
 	log("%p\n", unit);
-	return 0;
+	return 0xF;
 }
 
 bool AimeUnit_hasConfirm(void* unit) {

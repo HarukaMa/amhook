@@ -9,17 +9,17 @@ bool Network_canStartTest() {
 
 void* Network_getPowerOnTestInfo() {
 	log("\n");
-	return 0;
+	return 0x3B;
 }
 
 void* Network_getProperty() {
 	log("\n");
-	return 0;
+	return 0x3C;
 }
 
 void* Network_getTestInfo() {
 	log("\n");
-	return 0;
+	return 0x3D;
 }
 
 bool Network_isAvailable() {

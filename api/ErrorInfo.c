@@ -41,7 +41,7 @@ bool ErrorInfo_isOccurred(void* info) {
 	return false;
 }
 
-void* ErrorInfo_toString(void *info, void (*func)(wchar_t *)) {
+void ErrorInfo_toString(void *info, void (*func)(wchar_t *)) {
 	log("%p %p\n", info, func);
 	return 0;
 }

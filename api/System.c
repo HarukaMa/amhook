@@ -15,19 +15,19 @@ wchar_t* System_getAppRootPath() {
 	return 0;
 }
 
-wchar_t* System_getBoardId() {
+void* System_getBoardId() {
 	log("\n");
-	return 0;
+	return 0x43;
 }
 
 wchar_t* System_getGameId() {
 	log("\n");
-	return 0;
+	return L"GAME";
 }
 
-wchar_t* System_getKeychipId() {
+void* System_getKeychipId() {
 	log("\n");
-	return 0;
+	return 0x44;
 }
 
 uint32_t System_getModelType() {
@@ -42,7 +42,7 @@ enum RegionCode System_getRegionCode() {
 
 void* System_getResolution(int monitorIndex) {
 	log("%d\n", monitorIndex);
-	return 0;
+	return 0x45;
 }
 
 bool System_isDevelop() {

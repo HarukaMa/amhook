@@ -28,18 +28,17 @@ enum AccountingMode allnet_Accounting_getMode() {
 
 void* allnet_Accounting_getPlayCountItem(enum AccountingPlayCountMonth month) {
 	log("%d\n", month);
-	return 0;
+	return 0x10;
 }
 
 void* allnet_Accounting_getPlayer(int32_t playerIndex) {
 	log("%d\n", playerIndex);
-	return 0;
-
+	return 0x11;
 }
 
 int32_t allnet_Accounting_getPlayerCount() {
 	log("\n");
-	return 0;
+	return 1;
 }
 
 uint64_t allnet_Accounting_getReportTime() {
@@ -54,7 +53,7 @@ int64_t allnet_Accounting_getSpanUntilReport() {
 
 bool allnet_Accounting_isAvailable() {
 	log("\n");
-	return false;
+	return true;
 }
 
 bool allnet_Accounting_isLogFull() {

@@ -5,7 +5,7 @@
 
 void* CanPort_getTarget(void *port, int targetIndex) {
 	log("%p %d\n", port, targetIndex);
-	return 0;
+	return 0x19;
 }
 
 int32_t CanPort_getTargetCount(void *port) {

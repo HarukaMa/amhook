@@ -14,6 +14,9 @@ bool SwitchInput_isOffNow(void* unit, wchar_t* idValue) {
 
 bool SwitchInput_isOn(void* unit, wchar_t* idValue) {
 	log("%p %ls\n", unit, idValue);
+	if (!wcscmp(idValue, L"switch_player_1_15") || !wcscmp(idValue, L"switch_player_0_14")) {
+		return true;
+	}
 	return false;
 }
 

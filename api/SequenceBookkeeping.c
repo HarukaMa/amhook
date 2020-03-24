@@ -39,7 +39,7 @@ int32_t SequenceBookkeeping_timeHistogramCount_get(void* bookkeeping) {
 
 void* SequenceBookkeeping_timeHistogram_get(void* bookkeeping) {
 	log("%p\n", bookkeeping);
-	return 0;
+	return 0x42;
 }
 
 uint32_t SequenceBookkeeping_totalTime_get(void* bookkeeping) {

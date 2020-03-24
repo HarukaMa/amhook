@@ -52,7 +52,7 @@ enum AimePayConfirm AimePayOperation_getConfirm(void* operation) {
 
 void* AimePayOperation_getDealResult(void* operation) {
 	log("%p\n", operation);
-	return 0;
+	return 0xD;
 }
 
 bool AimePayOperation_hasConfirm(void* operation) {

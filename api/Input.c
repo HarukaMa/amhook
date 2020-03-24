@@ -9,7 +9,7 @@ int32_t InputId_MaxSize_get() {
 
 void* Input_getPlayer(int32_t playerIndex) {
 	log("%d\n", playerIndex);
-	return 0;
+	return 0x2D;
 }
 
 int32_t Input_getPlayerCount() {
@@ -19,4 +19,5 @@ int32_t Input_getPlayerCount() {
 
 void* Input_getSystem() {
 	log("\n");
+	return 0x2E;
 }

@@ -25,5 +25,5 @@ bool LanInstall_isExitNeeded() {
 
 bool LanInstall_isServer() {
 	log("\n");
-	return false;
+	return true;
 }

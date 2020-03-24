@@ -20,7 +20,7 @@ uint64_t NetDeliveryAppImageInfo_creationTime_get(void *info) {
 
 void* NetDeliveryAppImageInfo_progress_get(void* info) {
 	log("%p\n", info);
-	return 0;
+	return 0x38;
 }
 
 enum NetDeliveryStatus NetDeliveryAppImageInfo_status_get(void* info) {

@@ -1,5 +1,7 @@
 #include <stdio.h>
 
+#include "log.h"
+
 enum AimeErrorCategory {
 	None,
 	Warning,
@@ -47,7 +49,7 @@ enum AimeErrorId {
 
 void* AimeErrorInfo_base(void *info) {
 	log("%p\n", info);
-	return info;
+	return 0x7;
 }
 
 enum AimeErrorCategory AimeErrorInfo_getCategory(void *info) {

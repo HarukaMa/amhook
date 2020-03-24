@@ -25,12 +25,12 @@ bool Error_clearLog() {
 
 void* Error_getInfo() {
 	log("\n");
-	return 0;
+	return 0x28;
 }
 
 void* Error_getLog() {
 	log("\n");
-	return 0;
+	return 0x29;
 }
 
 bool Error_reset() {

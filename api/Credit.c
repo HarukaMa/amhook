@@ -16,17 +16,17 @@ bool Credit_clearBackup() {
 
 void* Credit_getBookkeeping() {
 	log("\n");
-	return 0;
+	return 0x1D;
 }
 
 void* Credit_getConfig() {
 	log("\n");
-	return 0;
+	return 0x1E;
 }
 
 void* Credit_getPlayer(int32_t playerIndex) {
 	log("%d\n", playerIndex);
-	return 0;
+	return 0x20;
 }
 
 int32_t Credit_getPlayerCount() {
@@ -36,7 +36,7 @@ int32_t Credit_getPlayerCount() {
 
 void* Credit_getSpecialDevice() {
 	log("\n");
-	return 0;
+	return 0x21;
 }
 
 bool Credit_isAvailable() {

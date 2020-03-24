@@ -20,17 +20,22 @@ enum PlayAccountingTiming {
 	AtEnd
 };
 
+static bool in_test = false;
+static bool in_play = false;
+
 bool Sequence_beginPlay(int32_t playerIndex, int32_t gameCostIndex, int32_t gameCostCount, bool accountingBeginValid, int32_t accountBeginKindCode,
 	int32_t accountingBeginStatusCode, bool accountingEndValid, int32_t accountingEndKindCode, int32_t accountingEndStatusCode, int32_t accountingEndItemCount,
 	uint32_t aimeId, _out_ enum PlayErrorId errorId) {
-	log("%d %d %d %d %d %d %d %d %d %d %d %p", playerIndex, gameCostIndex, gameCostCount, accountingBeginValid, accountBeginKindCode, accountingBeginStatusCode,
+	log("%d %d %d %d %d %d %d %d %d %d %d %p\n", playerIndex, gameCostIndex, gameCostCount, accountingBeginValid, accountBeginKindCode, accountingBeginStatusCode,
 		accountingEndValid, accountingEndKindCode, accountingEndStatusCode, accountingEndItemCount, aimeId, errorId);
-	return false;
+	in_play = true;
+	return true;
 }
 
 bool Sequence_beginTest() {
 	log("\n");
-	return false;
+	in_test = true;
+	return true;
 }
 
 bool Sequence_clearBackup() {
@@ -41,26 +46,28 @@ bool Sequence_clearBackup() {
 bool Sequence_continuePlay(int32_t playerIndex, int32_t gameCostIndex, int32_t gameCostCount, bool accountingBeginValid, int32_t accountBeginKindCode,
 	int32_t accountingBeginStatusCode, bool accountingEndValid, int32_t accountingEndKindCode, int32_t accountingEndStatusCode, int32_t accountingEndItemCount,
 	_out_ enum PlayErrorId errorId) {
-	log("%d %d %d %d %d %d %d %d %d %d %p", playerIndex, gameCostIndex, gameCostCount, accountingBeginValid, accountBeginKindCode, accountingBeginStatusCode,
+	log("%d %d %d %d %d %d %d %d %d %d %p\n", playerIndex, gameCostIndex, gameCostCount, accountingBeginValid, accountBeginKindCode, accountingBeginStatusCode,
 		accountingEndValid, accountingEndKindCode, accountingEndStatusCode, accountingEndItemCount, errorId);
 	return false;
 }
 
 bool Sequence_endPlay(int32_t playerIndex, bool accountingBeginValid, int32_t accountBeginKindCode,	int32_t accountingBeginStatusCode, bool accountingEndValid, 
 	int32_t accountingEndKindCode, int32_t accountingEndStatusCode, int32_t accountingEndItemCount, _out_ enum PlayErrorId errorId) {
-	log("%d %d %d %d %d %d %d %d %p", playerIndex, accountingBeginValid, accountBeginKindCode, accountingBeginStatusCode,
+	log("%d %d %d %d %d %d %d %d %p\n", playerIndex, accountingBeginValid, accountBeginKindCode, accountingBeginStatusCode,
 		accountingEndValid, accountingEndKindCode, accountingEndStatusCode, accountingEndItemCount, errorId);
-	return false;
+	in_play = false;
+	return true;
 }
 
 bool Sequence_endTest() {
 	log("\n");
-	return false;
+	in_test = false;
+	return true;
 }
 
 void* Sequence_getBookkeeping() {
 	log("\n");
-	return 0;
+	return 0x41;
 }
 
 enum PlayAccountingTiming Sequence_getPlayAccountingTiming() {
@@ -70,7 +77,7 @@ enum PlayAccountingTiming Sequence_getPlayAccountingTiming() {
 
 int32_t Sequence_getPlayerCount() {
 	log("\n");
-	return 0;
+	return 1;
 }
 
 uint32_t Sequence_getPlayingAimeId(int32_t playerIndex) {
@@ -85,15 +92,15 @@ bool Sequence_isAccountingPlaying(int32_t playerIndex) {
 
 bool Sequence_isPlaying(int32_t playerIndex) {
 	log("%d\n", playerIndex);
-	return false;
+	return in_play;
 }
 
 bool Sequence_isPlayingAny() {
 	log("\n");
-	return false;
+	return in_play;
 }
 
 bool Sequence_isTest() {
 	log("\n");
-	return false;
+	return in_test;
 }

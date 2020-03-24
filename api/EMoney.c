@@ -5,7 +5,7 @@
 
 void* EMoney_getAvailableBrand(int32_t index) {
 	log("%d\n", index);
-	return 0;
+	return 0x22;
 }
 
 int EMoney_getAvailableBrandCount() {
@@ -15,7 +15,7 @@ int EMoney_getAvailableBrandCount() {
 
 void* EMoney_getDealResult(int32_t index) {
 	log("%d\n", index);
-	return 0;
+	return 0x23;
 }
 
 int32_t EMoney_getDealResultCount() {
@@ -25,12 +25,12 @@ int32_t EMoney_getDealResultCount() {
 
 void* EMoney_getOperation() {
 	log("\n");
-	return 0;
+	return 0x24;
 }
 
 void* EMoney_getReport(int32_t index) {
 	log("%d\n", index);
-	return 0;
+	return 0x25;
 }
 
 int32_t EMoney_getReportCount() {
@@ -50,7 +50,7 @@ wchar_t* EMoney_getTerminalSerial() {
 
 bool EMoney_isAuthCompleted() {
 	log("\n");
-	return false;
+	return true;
 }
 
 bool EMoney_isAvailable() {

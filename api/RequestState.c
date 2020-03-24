@@ -4,15 +4,15 @@
 
 bool RequestState_isDone(void* state) {
 	log("%p\n", state);
-	return false;
+	return true;
 }
 
 bool RequestState_isSent(void* state) {
 	log("%p\n", state);
-	return false;
+	return true;
 }
 
 bool RequestState_isSucceeded(void* state) {
 	log("%p\n", state);
-	return false;
+	return true;
 }

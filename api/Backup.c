@@ -11,29 +11,56 @@ enum BackupRecordStatus {
 	InvalidCall = -1
 };
 
+enum BackupDevice {
+	Eeprom,
+	Sram,
+	File
+};
+
+struct BackupRecord {
+	void* Address;
+	void* Size;
+	enum BackupDevice Device;
+};
+
+static struct BackupRecord Records[64];
+
 bool Backup_executeSave() {
 	log("\n");
-	return 0;
+	return false;
 }
 
 int32_t Backup_getMaxRecordCount() {
 	log("\n");
-	return 0;
+	return 64;
 }
 
 int32_t Backup_getRecordCount() {
 	log("\n");
-	return 0;
+	int count = 0;
+	for (int i = 0; i < 64; i ++) {
+		if (Records[i].Address) {
+			count += 1;
+		}
+	}
+	return count;
 }
 
 enum BackupRecordStatus Backup_getRecordStatus(int32_t recordIndex) {
 	log("%d\n", recordIndex);
-	return InvalidCall;
+	char filename[13];
+	sprintf(filename, "backup%d.dat", recordIndex);
+	FILE* f = fopen(filename, "rb");
+	if (f) {
+		fclose(f);
+		return Valid;
+	}
+	return BrokenData;
 }
 
 bool Backup_isAsync() {
 	log("\n");
-	return false;
+	return true;
 }
 
 bool Backup_isBusy() {
@@ -43,25 +70,61 @@ bool Backup_isBusy() {
 
 bool Backup_isSetupSucceeded() {
 	log("\n");
-	return false;
+	return true;
 }
 
 void* Backup_saveAllRecords() {
 	log("\n");
-	return 0;
+	for (int i = 0; i < 64; i ++) {
+		if (Records[i].Address) {
+			char filename[13];
+			sprintf(filename, "backup%d.dat", i);
+			FILE* f = fopen(filename, "wb");
+			if (f) {
+				fwrite(Records[i].Address, Records[i].Size, 1, f);
+				fclose(f);
+			}
+		}
+	}
+	return 0x15;
 }
 
 void* Backup_saveRecord(int32_t recordIndex) {
 	log("%d\n", recordIndex);
-	return 0;
+	if (Records[recordIndex].Address) {
+		char filename[13];
+		sprintf(filename, "backup%d.dat", recordIndex);
+		FILE* f = fopen(filename, "wb");
+		if (f) {
+			fwrite(Records[recordIndex].Address, Records[recordIndex].Size, 1, f);
+			fclose(f);
+		}
+	}
+	return 0x16;
 }
 
 void Backup_setAsync(bool async) {
 	log("%d\n", async);	
 }
 
-void* Backup_setupRecords(void *records, int32_t count, wchar_t *gameId) {
+void* Backup_setupRecords(struct BackupRecord *records, int32_t count, wchar_t *gameId) {
 	log("%p %d %ls\n", records, count, gameId);
-	return 0;
+	for (int i = 0; i < count; i ++) {
+		struct BackupRecord record = records[i];
+		Records[i].Size = record.Size;
+		Records[i].Address = record.Address;
+		Records[i].Device = record.Device;
+		char filename[13];
+		sprintf(filename, "backup%d.dat", i);
+		FILE* f = fopen(filename, "rb");
+		if (f) {
+			void* buf = malloc(record.Size);
+			fread(buf, record.Size, 1, f);
+			memcpy(record.Address, buf, record.Size);
+			fclose(f);
+		}
+	}
+	
+	return 0x17;
 }
 

@@ -5,7 +5,7 @@
 
 void* Jvs_getNode(int32_t nodeIndex) {
 	log("%d\n", nodeIndex);
-	return 0;
+	return 0x2F;
 }
 
 int32_t Jvs_getNodeCount() {

@@ -11,17 +11,17 @@ int32_t AimePayCheckInPinCodeLength_get() {
 
 void* AimePay_getActivatedLocationInfo() {
 	log("\n");
-	return 0;
+	return 0x8;
 }
 
 void* AimePay_getCurrentLocationInfo() {
 	log("\n");
-	return 0;
+	return 0x9;
 }
 
 void* AimePay_getDealResult(int32_t index) {
 	log("%d\n", index);
-	return 0;
+	return 0xA;
 }
 
 int32_t AimePay_getDealResultCount() {
@@ -31,7 +31,7 @@ int32_t AimePay_getDealResultCount() {
 
 void* AimePay_getDealSummary(int32_t index) {
 	log("%d\n", index);
-	return 0;
+	return 0xB;
 }
 
 int32_t AimePay_getDealSummaryCount() {
@@ -41,7 +41,7 @@ int32_t AimePay_getDealSummaryCount() {
 
 void* AimePay_getOperation() {
 	log("\n");
-	return 0;
+	return 0xC;
 }
 
 bool AimePay_isActivated() {

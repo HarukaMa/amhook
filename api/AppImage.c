@@ -11,7 +11,7 @@ bool AppImage_existsOption(wchar_t *optionName) {
 
 void* AppImage_findOptionInfo(wchar_t *optionName) {
 	log("%ls\n", optionName);
-	return 0;
+	return 0x13;
 }
 
 uint64_t AppImage_getCreationTime() {
@@ -31,7 +31,7 @@ int32_t AppImage_getOptionCount() {
 
 void* AppImage_getOptionInfo(int32_t index) {
 	log("%d\n", index);
-	return 0;
+	return 0x14;
 }
 
 wchar_t* AppImage_getOptionMountRootPath() {

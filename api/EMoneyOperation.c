@@ -31,7 +31,7 @@ bool EMoneyOperation_checkDisplay(void* operation) {
 
 void* EMoneyOperation_getResult(void* operation) {
 	log("%p\n", operation);
-	return 0;
+	return 0x26;
 }
 
 bool EMoneyOperation_hasResult(void* operation) {

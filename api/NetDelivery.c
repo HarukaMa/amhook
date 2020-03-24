@@ -14,22 +14,22 @@ bool NetDelivery_existsOption() {
 
 void* NetDelivery_getAppImageInfo() {
 	log("\n");
-	return 0;
+	return 0x34;
 }
 
 void* NetDelivery_getAppTimeInfo() {
 	log("\n");
-	return 0;
+	return 0x35;
 }
 
 void* NetDelivery_getOptionImageInfo() {
 	log("\n");
-	return 0;
+	return 0x36;
 }
 
 void* NetDelivery_getOptionTimeInfo() {
 	log("\n");
-	return 0;
+	return 0x37;
 }
 
 bool NetDelivery_isAvailable() {

@@ -22,7 +22,7 @@ wchar_t* allnet_Auth_getGameServerHost() {
 
 wchar_t* allnet_Auth_getGameServerUri() {
 	log("\n");
-	return 0;
+	return L"http://127.0.0.1:10000/";
 }
 
 enum LineType allnet_Auth_getLineType() {
@@ -37,32 +37,32 @@ uint32_t allnet_Auth_getLocationId() {
 
 wchar_t* allnet_Auth_getLocationName() {
 	log("\n");
-	return 0;
+	return L"Location";
 }
 
 wchar_t* allnet_Auth_getLocationNickname(int32_t partIndex) {
 	log("%d\n", partIndex);
-	return 0;
+	return L"Loc";
 }
 
 int32_t allnet_Auth_getLocationNicknamePartCount() {
 	log("\n");
-	return 0;
+	return 1;
 }
 
 int32_t allnet_Auth_getRegionCode() {
 	log("\n");
-	return 0;
+	return 1;
 }
 
 wchar_t* allnet_Auth_getRegionName(int32_t partIndex) {
 	log("%d\n", partIndex);
-	return 0;
+	return L"Region";
 }
 
 int32_t allnet_Auth_getRegionNamePartCount() {
 	log("\n");
-	return 0;
+	return 1;
 }
 
 bool allnet_Auth_isAvailable() {
@@ -77,5 +77,5 @@ bool allnet_Auth_isDevelop() {
 
 bool allnet_Auth_isGood() {
 	log("\n");
-	return false;
+	return true;
 }
