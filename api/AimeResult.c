@@ -12,17 +12,17 @@ void AimeResult_getAccessCode(void *result, _out_ uint8_t *dest, int destSize) {
 
 uint32_t AimeResult_getAimeId(void *result) {
 	log("%p\n", result);
-	return 0;
+	return 1234;
 }
 
 wchar_t* AimeResult_getFirmVersion(void *unit) {
 	log("%p\n", unit);
-	return 0;
+	return L"0.00";
 }
 
 wchar_t* AimeResult_getHardVersion(void* unit) {
 	log("%p\n", unit);
-	return 0;
+	return L"0.00";
 }
 
 void AimeResult_getOfflineId(void *result, _out_ uint8_t *dest, int32_t destSize) {
@@ -41,7 +41,7 @@ int32_t AimeResult_getRelatedAimeIdCount(void *result) {
 
 wchar_t* AimeResult_getSegaIdAuthKey(void *result) {
 	log("%p\n", result);
-	return 0;
+	return L"SEGA_ID_AUTH_KEY";
 }
 
 bool AimeResult_isMobile(void* result) {
@@ -56,10 +56,10 @@ bool AimeResult_isReaderDetected(void* result) {
 
 bool AimeResult_isSegaIdRegistered(void* result) {
 	log("%p\n", result);
-	return false;
+	return true;
 }
 
 bool AimeResult_valid(void* result) {
 	log("%p\n", result);
-	return false;
+	return true;
 }

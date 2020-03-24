@@ -6,7 +6,7 @@
 
 bool SwitchOutput_isCurrentOn(void *unit, wchar_t *idValue, int32_t bitIndex) {
 	log("%p %ls %d\n", unit, idValue, bitIndex);
-	return false;
+	return true;
 }
 
 void SwitchOutput_reset(void* unit, wchar_t* idValue, int32_t bitIndex, bool forceUpdate) {

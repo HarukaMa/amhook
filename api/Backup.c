@@ -25,6 +25,10 @@ struct BackupRecord {
 
 static struct BackupRecord Records[64];
 
+extern bool request_states_done[0x45];
+extern bool request_states_sent[0x45];
+extern bool request_states_succeeded[0x45];
+
 bool Backup_executeSave() {
 	log("\n");
 	return false;
@@ -89,17 +93,28 @@ void* Backup_saveAllRecords() {
 	return 0x15;
 }
 
-void* Backup_saveRecord(int32_t recordIndex) {
-	log("%d\n", recordIndex);
-	if (Records[recordIndex].Address) {
+void Backup_saveRecord_worker(int *index) {
+	Sleep(100);
+	if (Records[*index].Address) {
 		char filename[13];
-		sprintf(filename, "backup%d.dat", recordIndex);
+		sprintf(filename, "backup%d.dat", *index);
 		FILE* f = fopen(filename, "wb");
 		if (f) {
-			fwrite(Records[recordIndex].Address, Records[recordIndex].Size, 1, f);
+			fwrite(Records[*index].Address, Records[*index].Size, 1, f);
 			fclose(f);
+			request_states_succeeded[0x16] = true;
 		}
 	}
+	free(index);
+	request_states_done[0x16] = true;
+}
+
+void* Backup_saveRecord(int32_t recordIndex) {
+	log("%d\n", recordIndex);
+	int* index = (int*)malloc(sizeof(int));
+	*index = recordIndex;
+	CreateThread(NULL, 0, &Backup_saveRecord_worker, index, 0, NULL);
+	request_states_sent[0x16] = true;
 	return 0x16;
 }
 
@@ -122,9 +137,12 @@ void* Backup_setupRecords(struct BackupRecord *records, int32_t count, wchar_t *
 			fread(buf, record.Size, 1, f);
 			memcpy(record.Address, buf, record.Size);
 			fclose(f);
+			free(buf);
 		}
 	}
-	
+	request_states_sent[0x17] = true;
+	request_states_done[0x17] = true;
+	request_states_succeeded[0x17] = true;
 	return 0x17;
 }
 

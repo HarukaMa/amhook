@@ -46,12 +46,12 @@ void* AimePay_getOperation() {
 
 bool AimePay_isActivated() {
 	log("\n");
-	return 0;
+	return true;
 }
 
 bool AimePay_isAvailable() {
 	log("\n");
-	return 0;
+	return true;
 }
 
 uint32_t MaxAimePayAmountCount_get() {

@@ -20,7 +20,7 @@ uint32_t CreditConfig_bonusAdder_get(void *config) {
 
 uint32_t CreditConfig_coinAmount_get(void* config) {
 	log("%p\n", config);
-	return 0;
+	return 110;
 }
 
 bool CreditConfig_coinChuteCommon_get(void* config) {
@@ -35,7 +35,7 @@ uint32_t CreditConfig_coinMultipliers_get(void *config, int32_t coinChuteIndex) 
 
 uint32_t CreditConfig_coinToCredit_get(void* config) {
 	log("%p\n", config);
-	return 0;
+	return 1;
 }
 
 bool CreditConfig_freePlay_get(void* config) {

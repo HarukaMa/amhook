@@ -5,17 +5,17 @@
 
 uint32_t CreditUnit_getAddableCoin(void *unit) {
 	log("%p\n", unit);
-	return 0;
+	return 1;
 }
 
 uint32_t CreditUnit_getCoinToCredit(void* unit) {
 	log("%p\n", unit);
-	return 0;
+	return 1;
 }
 
 uint32_t CreditUnit_getCredit(void* unit) {
 	log("%p\n", unit);
-	return 0;
+	return 1;
 }
 
 uint32_t CreditUnit_getGameCost(void *unit, int32_t gameCostIndex) {
@@ -33,9 +33,9 @@ bool CreditUnit_isFreePlay(void* unit) {
 	return false;
 }
 
-bool CreditUnit_isGameCostEnough(void* unit) {
-	log("%p\n", unit);
-	return false;
+bool CreditUnit_isGameCostEnough(void *unit, int32_t gameCostIndex, int32_t count) {
+	log("%p %d %d\n", unit, gameCostIndex, count);
+	return true;
 }
 
 bool CreditUnit_isZero(void* unit) {

@@ -23,7 +23,7 @@ uint64_t allnet_Accounting_getBackgroundReportTime() {
 
 enum AccountingMode allnet_Accounting_getMode() {
 	log("\n");
-	return None;
+	return A;
 }
 
 void* allnet_Accounting_getPlayCountItem(enum AccountingPlayCountMonth month) {

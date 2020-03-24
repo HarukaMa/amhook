@@ -5,17 +5,17 @@
 
 uint32_t Version_MajorLimit_get() {
 	log("\n");
-	return 0;
+	return 0xFFFF;
 }
 
 uint32_t Version_MinorLimit_get() {
 	log("\n");
-	return 0;
+	return 255;
 }
 
 uint32_t Version_PatchLimit_get() {
 	log("\n");
-	return 0;
+	return 255;
 }
 
 bool Version_canMake_fromParts(uint32_t major, uint32_t minor, uint32_t patch) {

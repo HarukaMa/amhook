@@ -258,6 +258,9 @@
     <ClCompile Include="allnet_WiFi.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="EMoneyResult.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="log.h">

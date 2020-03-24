@@ -21,7 +21,7 @@ uint64_t AppImage_getCreationTime() {
 
 uint32_t AppImage_getCurrentVersion() {
 	log("\n");
-	return 0;
+	return 0x10500;
 }
 
 int32_t AppImage_getOptionCount() {

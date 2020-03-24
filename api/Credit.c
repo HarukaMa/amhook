@@ -41,7 +41,7 @@ void* Credit_getSpecialDevice() {
 
 bool Credit_isAvailable() {
 	log("\n");
-	return false;
+	return true;
 }
 
 bool Credit_isCoinInIgnored() {

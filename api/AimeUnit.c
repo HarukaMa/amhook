@@ -24,17 +24,17 @@ enum AimeLedStatus {
 
 bool AimeUnit_acceptConfirm(void *unit) {
 	log("%p\n", unit);
-	return false;
+	return true;
 }
 
 bool AimeUnit_canStart(void* unit) {
 	log("%p\n", unit);
-	return false;
+	return true;
 }
 
 bool AimeUnit_cancel(void* unit) {
 	log("%p\n", unit);
-	return false;
+	return true;
 }
 
 enum AimeCommand AimeUnit_getBusyCommand(void* unit) {
@@ -44,7 +44,7 @@ enum AimeCommand AimeUnit_getBusyCommand(void* unit) {
 
 enum AimeConfirm AimeUnit_getConfirm(void* unit) {
 	log("%p\n", unit);
-	return None;
+	return AimeDB;
 }
 
 void* AimeUnit_getErrorInfo(void* unit) {
@@ -54,7 +54,7 @@ void* AimeUnit_getErrorInfo(void* unit) {
 
 enum AimeLedStatus AimeUnit_getLedStatus(void* unit) {
 	log("%p\n", unit);
-	return Error;
+	return Success;
 }
 
 void* AimeUnit_getResult(void* unit) {
@@ -84,15 +84,15 @@ bool AimeUnit_isBusy(void* unit) {
 
 bool AimeUnit_setLed(void *unit, bool onR, bool onG, bool onB) {
 	log("%p %d %d %d\n", unit, onR, onG, onB);
-	return false;
+	return true;
 }
 
 bool AimeUnit_setLedStatus(void *unit, enum AimeLedStatus status) {
 	log("%p %d\n", unit, status);
-	return false;
+	return true;
 }
 
 bool AimeUnit_start(void *unit, enum AimeCommand command) {
 	log("%p %d\n", unit, command);
-	return false;
+	return true;
 }

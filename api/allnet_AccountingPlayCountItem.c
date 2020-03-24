@@ -19,5 +19,5 @@ void allnet_AccountingPlayCountItem_toString(void *item, int32_t countWidth, voi
 
 bool allnet_AccountingPlayCountItem_valid(void* item) {
 	log("%p\n", item);
-	return 0;
+	return true;
 }

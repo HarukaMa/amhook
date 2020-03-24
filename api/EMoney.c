@@ -5,17 +5,17 @@
 
 void* EMoney_getAvailableBrand(int32_t index) {
 	log("%d\n", index);
-	return 0x22;
+	return 0x2200 + index;
 }
 
 int EMoney_getAvailableBrandCount() {
 	log("\n");
-	return 0;
+	return 5;
 }
 
 void* EMoney_getDealResult(int32_t index) {
 	log("%d\n", index);
-	return 0x23;
+	return 0x2300 + index;
 }
 
 int32_t EMoney_getDealResultCount() {
@@ -30,22 +30,22 @@ void* EMoney_getOperation() {
 
 void* EMoney_getReport(int32_t index) {
 	log("%d\n", index);
-	return 0x25;
+	return 0x2500 + index;
 }
 
 int32_t EMoney_getReportCount() {
 	log("\n");
-	return 0;
+	return 5;
 }
 
 wchar_t* EMoney_getTerminalId() {
 	log("\n");
-	return 0;
+	return L"EMONEY_TERMINAL_00";
 }
 
 wchar_t* EMoney_getTerminalSerial() {
 	log("\n");
-	return 0;
+	return L"EMONEY_SERIAL_00";
 }
 
 bool EMoney_isAuthCompleted() {
@@ -55,12 +55,12 @@ bool EMoney_isAuthCompleted() {
 
 bool EMoney_isAvailable() {
 	log("\n");
-	return false;
+	return true;
 }
 
 bool EMoney_isBrandAvailable(enum EMoneyBrandId brandId) {
 	log("%d\n", brandId);
-	return false;
+	return true;
 }
 
 bool EMoney_isReporting() {
@@ -70,7 +70,7 @@ bool EMoney_isReporting() {
 
 bool EMoney_isServiceAlive() {
 	log("\n");
-	return false;
+	return true;
 }
 
 void EMoney_resetSoundHook() {

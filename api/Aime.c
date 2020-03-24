@@ -47,7 +47,7 @@ int32_t Aime_getUnitCount() {
 
 bool Aime_isAvailable() {
 	log("\n");
-	return false;
+	return true;
 }
 
 bool Aime_isDBAlive() {

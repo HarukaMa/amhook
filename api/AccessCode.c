@@ -49,5 +49,5 @@ void AccessCode_toString(uint8_t *src, int32_t srcSize, wchar_t *separator, void
 
 bool AccessCode_valid(uint8_t *src, int32_t srcSize) {
 	log("%p %d\n", src, srcSize);
-	return false;
+	return true;
 }

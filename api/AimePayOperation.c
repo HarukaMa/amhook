@@ -12,37 +12,37 @@ enum AimePayConfirm {
 
 bool AimePayOperation_acceptConfirm(void *operation, wchar_t *param) {
 	log("%p %ls\n", operation, param);
-	return false;
+	return true;
 }
 
 bool AimePayOperation_activate(void *operation) {
 	log("%p\n", operation);
-	return false;
+	return true;
 }
 
 bool AimePayOperation_canAddCoin(void* operation, int32_t playerIndex, uint32_t coin) {
 	log("%p %d %d\n", operation, playerIndex, coin);
-	return false;
+	return true;
 }
 
 bool AimePayOperation_canOperateDeal(void* operation) {
 	log("%p\n", operation);
-	return false;
+	return true;
 }
 
 bool AimePayOperation_cancel(void* operation) {
 	log("%p\n", operation);
-	return false;
+	return true;
 }
 
 bool AimePayOperation_checkDisplay(void* operation) {
 	log("%p\n", operation);
-	return false;
+	return true;
 }
 
 bool AimePayOperation_deactivate(void* operation) {
 	log("%p\n", operation);
-	return false;
+	return true;
 }
 
 enum AimePayConfirm AimePayOperation_getConfirm(void* operation) {
@@ -72,12 +72,12 @@ bool AimePayOperation_isBusy(void* operation) {
 
 bool AimePayOperation_isCancellable(void* operation) {
 	log("%p\n", operation);
-	return false;
+	return true;
 }
 
 bool AimePayOperation_isDealAvailable(void* operation) {
 	log("%p\n", operation);
-	return false;
+	return true;
 }
 
 bool AimePayOperation_isErrorOccurred(void* operation) {

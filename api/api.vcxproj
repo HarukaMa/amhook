@@ -197,6 +197,7 @@
     <ClCompile Include="EMoneyBrand.c" />
     <ClCompile Include="EMoneyOperation.c" />
     <ClCompile Include="EMoneyReport.c" />
+    <ClCompile Include="EMoneyResult.c" />
     <ClCompile Include="Error.c" />
     <ClCompile Include="ErrorInfo.c" />
     <ClCompile Include="ErrorLog.c" />
