@@ -6,23 +6,27 @@
 
 #define _out_
 
+extern char access_code[21];
+extern uint32_t aime_id;
+
 void AimeResult_getAccessCode(void *result, _out_ uint8_t *dest, int destSize) {
 	log("%p %p %d\n", result, dest, destSize);
+	memcpy(dest, access_code, destSize);
 }
 
 uint32_t AimeResult_getAimeId(void *result) {
 	log("%p\n", result);
-	return 1234;
+	return aime_id;
 }
 
 wchar_t* AimeResult_getFirmVersion(void *unit) {
 	log("%p\n", unit);
-	return L"0.00";
+	return L"1.00";
 }
 
 wchar_t* AimeResult_getHardVersion(void* unit) {
 	log("%p\n", unit);
-	return L"0.00";
+	return L"1.00";
 }
 
 void AimeResult_getOfflineId(void *result, _out_ uint8_t *dest, int32_t destSize) {

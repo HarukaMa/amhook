@@ -44,5 +44,5 @@ void* SequenceBookkeeping_timeHistogram_get(void* bookkeeping) {
 
 uint32_t SequenceBookkeeping_totalTime_get(void* bookkeeping) {
 	log("%p\n", bookkeeping);
-	return 0;
+	return 1;
 }

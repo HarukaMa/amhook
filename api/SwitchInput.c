@@ -4,7 +4,9 @@
 
 bool switch_input_states[14] = { false };
 
-
+extern void service_credit();
+extern void insert_coin();
+extern bool aime_unit_has_card;
 
 LRESULT switch_input_keyboard_proc(int code, WPARAM wparam, LPARAM lparam) {
     if (code < 0) {
@@ -16,6 +18,9 @@ LRESULT switch_input_keyboard_proc(int code, WPARAM wparam, LPARAM lparam) {
 		break;
 	case VK_F2:
 		switch_input_states[1] = lparam & 0x80000000 ? false : true;
+		if (switch_input_states[1] && !(lparam & 0x40000000)) {
+			service_credit();
+		}
 		break;
 	case VK_F3:
 		switch_input_states[2] = lparam & 0x80000000 ? false : true;
@@ -53,7 +58,18 @@ LRESULT switch_input_keyboard_proc(int code, WPARAM wparam, LPARAM lparam) {
 	case VK_F5:
 		switch_input_states[13] = lparam & 0x80000000 ? false : true;
 		break;
+
+	case VK_RETURN:
+		if (!(lparam & 0x80000000) && !(lparam & 0x40000000)) {
+			insert_coin();
+		}
+		break;
+
+	case VK_BACK:
+		aime_unit_has_card = lparam & 0x80000000 ? false : true;
+		break;
 	}
+	
 	return CallNextHookEx(0, code, wparam, lparam);
 }
 

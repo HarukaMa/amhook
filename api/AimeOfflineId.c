@@ -2,6 +2,8 @@
 #include <stdint.h>
 #include <stdio.h>
 
+#include "log.h"
+
 #define _out_
 
 enum AimeOfflineIdType {

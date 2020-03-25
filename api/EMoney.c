@@ -35,7 +35,7 @@ void* EMoney_getReport(int32_t index) {
 
 int32_t EMoney_getReportCount() {
 	log("\n");
-	return 5;
+	return 0;
 }
 
 wchar_t* EMoney_getTerminalId() {

@@ -93,7 +93,7 @@ void* Backup_saveAllRecords() {
 	return 0x15;
 }
 
-void Backup_saveRecord_worker(int *index) {
+DWORD WINAPI Backup_saveRecord_worker(int *index) {
 	Sleep(100);
 	if (Records[*index].Address) {
 		char filename[13];
@@ -107,6 +107,7 @@ void Backup_saveRecord_worker(int *index) {
 	}
 	free(index);
 	request_states_done[0x16] = true;
+	return 0;
 }
 
 void* Backup_saveRecord(int32_t recordIndex) {

@@ -12,7 +12,7 @@ int32_t AccessCode_DigitCount_get() {
 
 int32_t AccessCode_Size_get() {
 	log("\n");
-	return 10;
+	return 20; // should be 10 but well
 }
 
 bool AccessCode_canMake(wchar_t *src, wchar_t *separator) {
@@ -43,11 +43,20 @@ bool AccessCode_operator_less(uint8_t* srcL, int32_t srcLSize, uint8_t* srcR, in
 	return false;
 }
 
-void AccessCode_toString(uint8_t *src, int32_t srcSize, wchar_t *separator, void (*func)(intptr_t)) {
+void AccessCode_toString(uint8_t *src, int32_t srcSize, wchar_t *separator, void (*func)(wchar_t *)) {
 	log("%p %d %ls %p\n", src, srcSize, separator, func);
+	static wchar_t string[21];
+	swprintf(string, 21, L"%hs", src);
+	func(string);
 }
 
 bool AccessCode_valid(uint8_t *src, int32_t srcSize) {
 	log("%p %d\n", src, srcSize);
+	if (srcSize <= 0 || srcSize > 20) {
+		return false;
+	}
+	if (src[0] == 0) {
+		return false;
+	}
 	return true;
 }

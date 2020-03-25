@@ -4,7 +4,7 @@
 
 bool Network_canStartTest() {
 	log("\n");
-	return false;
+	return true;
 }
 
 void* Network_getPowerOnTestInfo() {
@@ -24,25 +24,25 @@ void* Network_getTestInfo() {
 
 bool Network_isAvailable() {
 	log("\n");
-	return false;
+	return true;
 }
 
 bool Network_isLanAvailable() {
 	log("\n");
-	return false;
+	return true;
 }
 
 bool Network_isLocationLanAvailable() {
 	log("\n");
-	return false;
+	return true;
 }
 
 bool Network_isWanAvailable() {
 	log("\n");
-	return false;
+	return true;
 }
 
 bool Network_startTest() {
 	log("\n");
-	return false;
+	return true;
 }

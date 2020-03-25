@@ -6,6 +6,8 @@
 extern LRESULT switch_input_keyboard_proc(int code, WPARAM wparam, LPARAM lparam);
 extern LRESULT switch_input_mouse_proc(int code, WPARAM wparam, LPARAM lparam);
 
+extern void load_bookkeeping_data();
+
 BOOL APIENTRY DllMain( HMODULE hModule,
                        DWORD  ul_reason_for_call,
                        LPVOID lpReserved
@@ -19,9 +21,12 @@ BOOL APIENTRY DllMain( HMODULE hModule,
         log("DLL_PROCESS_ATTACH\n");
         kb_hhook = SetWindowsHookExA(WH_KEYBOARD, &switch_input_keyboard_proc, hModule, GetCurrentThreadId());
         m_hhook = SetWindowsHookExA(WH_MOUSE, &switch_input_mouse_proc, hModule, GetCurrentThreadId());
+        load_bookkeeping_data();
         break;
     case DLL_THREAD_ATTACH:
+        break;
     case DLL_THREAD_DETACH:
+        break;
     case DLL_PROCESS_DETACH:
         //log("DLL_PROCESS_DETACH\n");
         //UnhookWindowsHookEx(kb_hhook);

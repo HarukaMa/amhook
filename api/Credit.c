@@ -9,6 +9,9 @@ enum CreditSound {
 	Credit
 };
 
+int32_t(*coin_in_hook)(enum CreditSound sound) = NULL;
+int32_t(*coin_in_hook_with_player)(enum CreditSound sound, intptr_t playerIndices, int32_t playerCount) = NULL;
+
 bool Credit_clearBackup() {
 	log("\n");
 	return false;
@@ -51,14 +54,17 @@ bool Credit_isCoinInIgnored() {
 
 void Credit_resetCoinInHook() {
 	log("\n");
+	coin_in_hook = NULL;
 }
 
 void Credit_setCoinInHook(int32_t (*hook)(enum CreditSound sound)) {
 	log("%p\n", hook);
+	coin_in_hook = hook;
 }
 
 void Credit_setCoinInHookWithPlayer(int32_t (*hook)(enum CreditSound sound, intptr_t playerIndices, int32_t playerCount)) {
-	log("%p\n", hook);
+	log("%p %\n", hook);
+	coin_in_hook = hook;
 }
 
 bool Credit_setCoinInIgnored(bool ignored) {

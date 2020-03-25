@@ -47,6 +47,9 @@ enum AimeErrorId {
 	FeliCaComFail
 };
 
+enum AimeErrorCategory aime_error_category;
+enum AimeErrorId aime_error_id;
+
 void* AimeErrorInfo_base(void *info) {
 	log("%p\n", info);
 	return 0x7;
@@ -54,11 +57,11 @@ void* AimeErrorInfo_base(void *info) {
 
 enum AimeErrorCategory AimeErrorInfo_getCategory(void *info) {
 	log("%p\n", info);
-	return Unknown;
+	return Fatal;
 }
 
 enum AimeErrorId AimeErrorInfo_getId(void *info) {
 	log("%p\n", info);
-	return ReaderIncompatible;
+	return aime_error_id;
 }
 
