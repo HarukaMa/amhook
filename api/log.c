@@ -3,6 +3,7 @@
 FILE* output = NULL;
 
 void log_(const char* format, ...) {
+#if 0
 	if (!output) {
 		output = fopen("amdaemon.log", "w");
 	}
@@ -19,4 +20,5 @@ void log_(const char* format, ...) {
 	OutputDebugStringA(result);
 	fprintf(output, "%s", result);
 	fflush(output);
+#endif
 }

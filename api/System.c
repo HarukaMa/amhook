@@ -22,7 +22,7 @@ void* System_getBoardId() {
 
 wchar_t* System_getGameId() {
 	log("\n");
-	return L"GAME";
+	return L"SDDT";
 }
 
 void* System_getKeychipId() {
