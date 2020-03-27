@@ -22,7 +22,7 @@ wchar_t* allnet_Auth_getGameServerHost() {
 
 wchar_t* allnet_Auth_getGameServerUri() {
 	log("\n");
-	return L"http://127.0.0.1:10000/";
+	return L"http://raw.mrx.im:10500/";
 }
 
 enum LineType allnet_Auth_getLineType() {

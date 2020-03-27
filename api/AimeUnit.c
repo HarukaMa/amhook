@@ -87,7 +87,7 @@ NET_ERROR:
 			log("%ls\n", buffer);
 			goto RETURN;
 		}
-		HINTERNET conn = WinHttpConnect(session, L"127.0.0.1", 10000, 0);
+		HINTERNET conn = WinHttpConnect(session, L"raw.mrx.im", 10500, 0);
 		if (!conn) {
 			error = GetLastError();
 			WinHttpCloseHandle(session);
