@@ -10,6 +10,58 @@ enum LineType {
 	Xdsl
 };
 
+enum Prefecture {
+	None,
+	Aichi,
+	Aomori,
+	Akita,
+	Ishikawa,
+	Ibaraki,
+	Iwate,
+	Ehime,
+	Oita,
+	Osaka,
+	Okayama,
+	Okinawa,
+	Kagawa,
+	Kagoshima,
+	Kanagawa,
+	Gifu,
+	Kyoto,
+	Kumamoto,
+	Gunma,
+	Kouchi,
+	Saitama,
+	Saga,
+	Shiga,
+	Shizuoka,
+	Shimane,
+	Chiba,
+	Tokyo,
+	Tokushima,
+	Tochigi,
+	Tottori,
+	Toyama,
+	Nagasaki,
+	Nagano,
+	Nara,
+	Niigata,
+	Hyogo,
+	Hiroshima,
+	Fukui,
+	Fukuoka,
+	Fukushima,
+	Hokkaido,
+	Mie,
+	Miyagi,
+	Miyazaki,
+	Yamagata,
+	Yamaguchi,
+	Yamanashi,
+	Wakayama,
+	Max
+};
+
 wchar_t* allnet_Auth_getCountryCode() {
 	log("\n");
 	return 0;
@@ -52,12 +104,12 @@ int32_t allnet_Auth_getLocationNicknamePartCount() {
 
 int32_t allnet_Auth_getRegionCode() {
 	log("\n");
-	return 1;
+	return Tokyo;
 }
 
 wchar_t* allnet_Auth_getRegionName(int32_t partIndex) {
 	log("%d\n", partIndex);
-	return L"Region";
+	return L"Tokyo";
 }
 
 int32_t allnet_Auth_getRegionNamePartCount() {
@@ -67,7 +119,7 @@ int32_t allnet_Auth_getRegionNamePartCount() {
 
 bool allnet_Auth_isAvailable() {
 	log("\n");
-	return false;
+	return true;
 }
 
 bool allnet_Auth_isDevelop() {

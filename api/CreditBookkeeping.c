@@ -9,9 +9,14 @@ struct CreditBookkeeping {
 	int emoney_credit;
 	int service_credit;
 	int total_coin;
+
+    uint32_t total_time;
 };
 
 struct CreditBookkeeping bookkeeping_data;
+
+extern uint32_t total_time;
+extern DWORD WINAPI count_total_time(void* _);
 
 void load_bookkeeping_data() {
 	FILE* f = fopen("bookkeeping.dat", "rb");
@@ -19,9 +24,12 @@ void load_bookkeeping_data() {
 		fread(&bookkeeping_data, sizeof(struct CreditBookkeeping), 1, f);
 		fclose(f);
 	}
+	total_time = bookkeeping_data.total_time;
+	CreateThread(NULL, 0, &count_total_time, NULL, 0, 0);
 }
 
 void save_bookkeeping_data() {
+	bookkeeping_data.total_time = total_time;
 	FILE* f = fopen("bookkeeping.dat", "wb");
 	if (f) {
 		fwrite(&bookkeeping_data, sizeof(struct CreditBookkeeping), 1, f);

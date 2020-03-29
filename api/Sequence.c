@@ -20,8 +20,8 @@ enum PlayAccountingTiming {
 	AtEnd
 };
 
-static bool in_test = false;
-static bool in_play = false;
+bool in_test = false;
+bool in_play = false;
 
 bool Sequence_beginPlay(int32_t playerIndex, int32_t gameCostIndex, int32_t gameCostCount, bool accountingBeginValid, int32_t accountBeginKindCode,
 	int32_t accountingBeginStatusCode, bool accountingEndValid, int32_t accountingEndKindCode, int32_t accountingEndStatusCode, int32_t accountingEndItemCount,

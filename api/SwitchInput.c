@@ -7,6 +7,7 @@ bool switch_input_states[14] = { false };
 extern void service_credit();
 extern void insert_coin();
 extern bool aime_unit_has_card;
+extern bool in_test;
 
 LRESULT switch_input_keyboard_proc(int code, WPARAM wparam, LPARAM lparam) {
     if (code < 0) {
@@ -18,7 +19,7 @@ LRESULT switch_input_keyboard_proc(int code, WPARAM wparam, LPARAM lparam) {
 		break;
 	case VK_F2:
 		switch_input_states[1] = lparam & 0x80000000 ? false : true;
-		if (switch_input_states[1] && !(lparam & 0x40000000)) {
+		if (switch_input_states[1] && !(lparam & 0x40000000) && !in_test) {
 			service_credit();
 		}
 		break;

@@ -12,6 +12,8 @@ struct CreditBookkeeping {
 	int emoney_credit;
 	int service_credit;
 	int total_coin;
+
+	uint32_t total_time;
 };
 
 extern struct CreditBookkeeping bookkeeping_data;
