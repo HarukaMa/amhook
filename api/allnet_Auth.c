@@ -74,7 +74,7 @@ wchar_t* allnet_Auth_getGameServerHost() {
 
 wchar_t* allnet_Auth_getGameServerUri() {
 	log("\n");
-	return L"http://raw.mrx.im:10500/";
+	return L"http://raw.mrx.im:9002/";
 }
 
 enum LineType allnet_Auth_getLineType() {

@@ -3,13 +3,22 @@
 #include <stdio.h>
 #include <windows.h>
 
-int main() {
+int main(int argc, char *argv[]) {
+	if (argc < 2) {
+		return 1;
+	}
 	STARTUPINFOA *startup_info = (STARTUPINFOA *)malloc(sizeof(STARTUPINFOA));
 	memset(startup_info, 0, sizeof(STARTUPINFOA));
 	PROCESS_INFORMATION *process_info = (PROCESS_INFORMATION *)malloc(sizeof(PROCESS_INFORMATION));
+	char cmdline[512] = { 0 };
+	for (int i = 2; i < argc; i++) {
+		strcat_s(cmdline, 512, argv[i]);
+		strcat_s(cmdline, 512, " ");
+	}
+	printf("%s %s\n", argv[1], cmdline);
 	BOOL create = CreateProcessA(
-		"amdaemon.exe",
-		"-f -c config_common.json config_client.json config_server.json",
+		argv[1],
+		cmdline,
 		NULL,
 		NULL,
 		0,
@@ -32,7 +41,7 @@ int main() {
 			int error = GetLastError();
 			printf("Error: %d\n", error);
 		}
-		Sleep(100);
+		Sleep(20000);
 		ResumeThread(process_info->hThread);
 		WaitForSingleObject(process_info->hProcess, INFINITE);
 	} else {
